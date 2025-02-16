@@ -1,0 +1,28 @@
+.home{
+  background-color: #1a1a1a;
+  min-height:100vh;
+  position:absolute;
+  top:0;
+  font-family: "Quicksand", serif !important;
+}
+.breakline{
+  width: 70vw;
+  height: 2px;
+  background-color: #fff;
+  border-bottom-right-radius:100px;
+  border-top-right-radius:100px;
+  animation-name: breakline;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+}
+@keyframes breakline{
+  0%{
+    width: 70vw;
+  }
+  50%{
+    width: 60vw;
+  }
+  100%{
+    width: 70vw;
+  }
+}

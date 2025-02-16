@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/lexi/dev-sw.js?dev-sw', { scope: '/lexi/', type: 'classic' })

@@ -1,0 +1,168 @@
+/* أنماط عامة للبطاقة */
+.card {
+  background: #1a1a1a; /* خلفية داكنة */
+  border-radius: 16px;
+  border: 1px solid #2e2e2e;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 100%;
+  width: 96%;
+  margin: auto;
+  color: #f5f5f5; /* نص فاتح */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-color: #3e3e3e;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 46, 46, 0.4) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.card-header {
+  padding: 24px;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #f5f5f5; /* نص فاتح */
+  letter-spacing: -0.5px;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+.card-body p {
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b0b0b0; /* نص فاتح */
+}
+
+.card-body strong {
+  color: #8a85ff; /* لون النص القوي */
+  font-weight: 500;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid #2e2e2e;
+}
+
+.card-footer button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-footer .edit-btn {
+  background: rgba(138, 133, 255, 0.1);
+  color: #8a85ff;
+  border: 1px solid rgba(138, 133, 255, 0.2);
+}
+
+.card-footer .delete-btn {
+  background: rgba(255, 90, 90, 0.1);
+  color: #ff5a5a;
+  border: 1px solid rgba(255, 90, 90, 0.2);
+}
+
+.card-footer button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.card-footer button i {
+  font-size: 14px;
+}
+
+/* أدوات التحكم في الصوت */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid #2e2e2e;
+}
+
+.audio-btn {
+  background: none;
+  border: none;
+  color: #8a85ff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+  background: rgba(138, 133, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.audio-btn i {
+  font-size: 14px;
+}
+
+.audio-progress {
+  flex: 1;
+}
+
+.audio-progress input[type="range"] {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: #2e2e2e;
+  border-radius: 2px;
+}
+
+.audio-progress input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #8a85ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.time-indicator {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}

@@ -1,0 +1,52 @@
+/* أنماط عامة للبحث */
+.search-container {
+  width: 87%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.search-input-container {
+  position: relative;
+  width: 90%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid #8a85ff;
+  border-radius: 30px;
+  outline: none;
+  background: #2e2e2e; /* خلفية داكنة */
+  color: #f5f5f5; /* نص فاتح */
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #666; /* لون نص العنصر النائب */
+}
+
+.search-input:focus {
+  border-color: #6f6bff; /* لون حدود عند التركيز */
+  box-shadow: 0 0 10px rgba(138, 133, 255, 0.3); /* ظل عند التركيز */
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #8a85ff; /* لون الأيقونة */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.clear-search-btn:hover {
+  color: #6f6bff; /* لون الأيقونة عند التمرير */
+}
