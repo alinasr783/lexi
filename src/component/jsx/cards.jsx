@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Card from "./card"; // استيراد مكون البطاقة
@@ -7,13 +8,12 @@ import "../css/search.css";
 
 const Cards = () => {
   console.log("Component Rendered");
-
+  const navigate = useNavigate();
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // جلب الكلمات من قاعدة البيانات
   const getWords = useCallback(async () => {
     if (!email) {
       console.log("No email found, skipping fetch");
@@ -40,7 +40,12 @@ const Cards = () => {
 
   // فلترة الكلمات حسب البحث
   const filteredWords = words.filter((word) => {
-    const match = 
+    if (!word.word || !word.mean || !word.arabic) {
+      console.warn("Skipping word due to missing properties:", word);
+      return false;
+    }
+
+    const match =
       word.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
       word.mean.toLowerCase().includes(searchTerm.toLowerCase()) ||
       word.arabic.toLowerCase().includes(searchTerm.toLowerCase());
@@ -48,8 +53,7 @@ const Cards = () => {
     console.log(`Checking word "${word.word}" -> Match:`, match);
     return match;
   });
-
-  // دالة حذف الكلمة
+  // // دالة حذف الكلمة
   const deleteWord = async (id) => {
     if (!window.confirm("Are you sure you want to delete this word?")) return;
 
@@ -64,30 +68,28 @@ const Cards = () => {
     }
   };
 
-  // دالة النقر على البطاقة
+  // // دالة النقر على البطاقة
   const handleCardClick = (word) => {
     console.log("Card clicked:", word);
   };
 
   // جلب الكلمات عند تغيير البريد الإلكتروني
   useEffect(() => {
-    console.log("Setting up Firebase auth listener...");
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Auth state changed. User:", user);
-      setEmail(user ? user.email : null);
+      if (user) {
+        setEmail(user.email);
+      } else {
+        setEmail(null);
+      }
     });
-
-    return () => {
-      console.log("Unsubscribing Firebase auth listener...");
-      unsubscribe();
-    };
-  }, []);
+    return () => unsubscribe();
+  }, [navigate]);
 
   useEffect(() => {
     console.log("Email changed:", email);
     getWords();
-  }, [email, getWords]);
+  }, [email]);
 
   return (
     <div className="cards-container">

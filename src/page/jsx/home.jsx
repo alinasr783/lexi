@@ -8,7 +8,7 @@ export default function Home() {
     <div className='home'>
       <Header />
       <div className='breakline'></div>
-      <Cards /> {/* عرض مكون البطاقات مع البحث داخله */}
+      <Cards />
     </div>
   );
 }
